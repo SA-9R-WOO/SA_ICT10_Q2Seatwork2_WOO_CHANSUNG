@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hogwarts Grade Calculator</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        :root {
+            --navy-dark: #1a1a40;
+            --navy-medium: #2e2e66;
+            --navy-light: #4a4a88;
+            --parchment: #f9f5e3;
+            --gold-accent: #d4af37;
+        }
+        body {
+            background-color: var(--parchment);
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(26, 26, 64, 0.15);
+        }
+        h1 {
+            color: var(--navy-dark);
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        h2 {
+            color: var(--navy-medium);
+            margin-top: 20px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        .form-control {
+            margin-bottom: 15px;
+            border: 1px solid var(--navy-medium);
+        }
+        .form-control:focus {
+            border-color: var(--gold-accent);
+            box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.3);
+        }
+        .btn-primary {
+            background-color: var(--navy-dark);
+            border-color: var(--navy-dark);
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .btn-primary:hover {
+             background-color: var(--navy-medium);
+            border-color: var(--navy-medium);
+            color: white;
+        }
+        #student_info {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--navy-dark);
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #efede0;
+            border-left: 5px solid var(--gold-accent);
+            border-radius: 5px;
+        }
+        #summary {
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-family: monospace;
+        }
+        #output {
+            font-size: 1.3rem;
+            color: var(--navy-dark);
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(212, 175, 55, 0.2);
+            border-radius: 5px;
+        }
+        .input-group-text {
+            background-color: var(--navy-dark);
+            color: var(--gold-accent);
+            border: 1px solid var(--navy-dark);
+            min-width: 100px; 
+        }
+        .grades-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .grade-input-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hogwarts Grade Calculator</h1>
+        
+        <div class="mb-3">
+            <div class="input-group">
+                <span class="input-group-text">First Name</span>
+                <input type="text" class="form-control" id="first_name" >
+            </div><br>
+            
+            <div class="input-group">
+                <span class="input-group-text">Last Name</span>
+                <input type="text" class="form-control" id="last_name" >
+            </div>
+        </div>
+
+        <h2>Enter your grades:</h2>
+        
+        <div class="grades-container">
+            <div class="grade-input-group">
+                <div class="input-group">
+                    <span class="input-group-text">Astronomy</span>
+                    <input type="text" class="form-control" id="astronomy" placeholder="Grade">
+                </div>
+            </div>
+            
+            <div class="grade-input-group">
+                <div class="input-group">
+                    <span class="input-group-text">Charms</span>
+                    <input type="text" class="form-control" id="charms" placeholder="Grade">
+                </div>
+            </div>
+            
+            <div class="grade-input-group">
+                <div class="input-group">
+                    <span class="input-group-text">Defence</span>
+                    <input type="text" class="form-control" id="defence" placeholder="Grade">
+                </div>
+            </div>
+            
+            <div class="grade-input-group">
+                <div class="input-group">
+                    <span class="input-group-text">Herbology</span>
+                    <input type="text" class="form-control" id="herbology" placeholder="Grade">
+                </div>
+            </div>
+            
+            <div class="grade-input-group">
+                <div class="input-group">
+                    <span class="input-group-text">Potions</span>
+                    <input type="text" class="form-control" id="potions" placeholder="Grade">
+                </div>
+            </div>
+            
+            <div class="grade-input-group">
+                <div class="input-group">
+                    <span class="input-group-text">Transfiguration</span>
+                    <input type="text" class="form-control" id="transfiguration" placeholder="Grade">
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn btn-primary" type="submit" py-click="general_weighted_average">Calculate your Fate</button>
+        
+        <div id="student_info"></div>
+        <pre id="summary"></pre>
+        <div id="output"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="py" src="main.py"></script>
+</body>
+</html>
